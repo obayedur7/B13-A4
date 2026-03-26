@@ -1,5 +1,6 @@
 let interviewList = [];
 let rejectedList = [];
+let currentStatus = 'all-filter-btn'
 
 let total = document.getElementById('total-count');
 let interviewCount = document.getElementById('interview-count');
@@ -22,6 +23,7 @@ function calculateCount (){
 calculateCount();
 
 function toggleStyle(id){
+    currentStatus = id ;
 allFilterButton.classList.remove('bg-blue-500');
 interviewFilterButton.classList.remove('bg-blue-500');
 rejectedFilterButton.classList.remove('bg-blue-500');
@@ -35,7 +37,8 @@ selected.classList.remove('bg-white');
 selected.classList.add('bg-blue-500');
 if(id == 'all-filter-btn'){
     noJobsSection.classList.add('hidden')
-    allCardSection.classList.remove('hidden')
+    allCardSection.classList.remove('hidden');
+    filterSection.classList.add('hidden')
 }
 else if(id == 'interview-filter-btn'){
   if(interviewList.length == 0){
@@ -43,12 +46,15 @@ else if(id == 'interview-filter-btn'){
     else {noJobsSection.classList.add('hidden')}
     allCardSection.classList.add('hidden');
     filterSection.classList.remove('hidden');
+    renderInterview();
 }
 else if(id == 'rejected-filter-btn'){
     if(rejectedList.length == 0){
     noJobsSection.classList.remove('hidden')}
     else{noJobsSection.classList.add('hidden')}
-    allCardSection.classList.add('hidden')
+    allCardSection.classList.add('hidden');
+    filterSection.classList.remove('hidden');
+    renderRejected();
 }
 }
 
@@ -74,8 +80,18 @@ if(event.target.classList.contains('interview-btn')){
     if(!companyExist){
         interviewList.push(cardInfo);
     }
+
+    rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName);
+    if(currentStatus == 'rejected-filter-btn'){
+        if(rejectedList.length == 0){
+    noJobsSection.classList.remove('hidden')}
+    }
+
     calculateCount();
-    renderInterview();  
+    if(currentStatus == 'rejected-filter-btn'){
+        renderRejected();
+    }
+    // renderInterview();  
 }
 
 
@@ -99,7 +115,18 @@ else if(event.target.classList.contains('rejected-btn')){
     if(!companyExist){
         rejectedList.push(cardInfo);
     }
+
+    interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName);
+    if(currentStatus == 'interview-filter-btn'){
+         if(interviewList.length == 0){
+    noJobsSection.classList.remove('hidden')}
+    }
+
     calculateCount();
+    if(currentStatus == 'interview-filter-btn'){
+        renderInterview();
+    }
+    // renderRejected();
 }
 
 })
@@ -117,6 +144,37 @@ function renderInterview(){
             <p class="condition  text-gray-500 text-sm pt-2 pb-3">${interview.condition}</p>
             <button class="statuss   bg-blue-200 px-2 py-1 text-sm ">${interview.status}</button>
             <p class="details   pt-3">${interview.details}</p>
+
+            <!-- Button -->
+            <div class="py-2">
+                <button class="interview-btn   border rounded text-green-500 px-3 py-1 text-sm font-semibold">INTERVIEW</button>
+                <button class="rejected-btn   border rounded text-red-500 px-3 py-1 text-sm font-semibold">REJECTED</button>
+            </div>
+        </div>
+        <div class="">
+            <button class="delete-btn p-2"> <img class="max-w-9 max-h-9 p-1  border rounded-full opacity-40" src="trash.png" alt=""> </button>
+        </div>
+        `
+
+        filterSection.appendChild(div);
+    }
+    
+}
+
+
+function renderRejected(){
+    filterSection.innerHTML = '';
+    for(let reject of rejectedList){
+        let div = document.createElement('div');
+        div.className = 'flex justify-between bg-white rounded-xl overflow-hidden';
+        div.innerHTML = `
+         <div class="bg-white py-2 px-4 ">
+            <p class="companyName  text-violet-950 text-xl font-semibold">${reject.companyName}</p>
+            <p class="position   text-gray-500">${reject.position}</p> 
+            
+            <p class="condition  text-gray-500 text-sm pt-2 pb-3">${reject.condition}</p>
+            <button class="statuss   bg-blue-200 px-2 py-1 text-sm ">${reject.status}</button>
+            <p class="details   pt-3">${reject.details}</p>
 
             <!-- Button -->
             <div class="py-2">
