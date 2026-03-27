@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Job Application Tracker</title>
@@ -12,16 +13,16 @@
    <header class="w-[80%] mx-auto ">
     <p class="font-bold text-violet-950 text-2xl pt-4">Job Application Tracker</p>
     <!-- 3 cards total interview rejected  -->
-    <div class="grid grid-cols-3 gap-5 py-4">
-        <div class="bg-white rounded p-4">
+    <div class="grid sm:grid-cols-3 gap-5 py-4">
+        <div class="bg-white rounded sm:p-4 p-1">
             <p>Total</p>
             <p id="total-count" class="text-xl font-bold text-violet-950">0</p>
         </div>
-        <div class="bg-white rounded p-4">
+        <div class="bg-white rounded sm:p-4 p-1">
             <p>Interview</p>
             <p id="interview-count" class="text-xl font-bold text-green-400">0</p>
         </div>
-        <div class="bg-white rounded p-4">
+        <div class="bg-white rounded sm:p-4 p-1">
             <p>Rejected</p>
             <p id="rejected-count" class="text-xl font-bold text-red-500">0</p>
         </div>
@@ -35,7 +36,9 @@
         <div>
             <p class="text-violet-950 text-xl font-semibold">Availabe Jobs</p>
         </div>
-        <div>
+        <div class="flex gap-1">
+            <p id="int-num-of-jobs" class="hidden"></p>
+            <p id="rej-num-of-jobs" class="hidden"></p>
             <p><span id="total-2">0</span> jobs</p>
         </div>
     </section>
@@ -89,7 +92,7 @@
             </div>
         </div>
         <div class="">
-            <button class="delete-btn p-2"> <img class="max-w-9 max-h-9 p-1  border rounded-full opacity-40" src="trash.png" alt=""> </button>
+            <button class="delete-btn p-2 "><img class="max-w-9 max-h-9 p-1  border rounded-full opacity-40" src="trash.png" alt=""> </button>
         </div>
        </div>
 
