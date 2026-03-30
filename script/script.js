@@ -113,7 +113,7 @@ if(event.target.classList.contains('interview-btn')){
     if(rejectedList.length == 0){
         rejectedNumOfJobs.classList.add('hidden');
     }
-    renderInterview();  
+    // renderInterview();  
 }
 
 
@@ -152,7 +152,7 @@ else if(event.target.classList.contains('rejected-btn')){
    if(interviewList.length == 0){
       interviewNumOfJobs.classList.add('hidden')
     }
-    renderRejected();
+    // renderRejected();
 }
 // delete button 
 else if(event.target.classList.contains('delete-btn')){
