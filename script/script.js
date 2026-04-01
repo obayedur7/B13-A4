@@ -184,7 +184,7 @@ function renderInterview(){
             </div>
         </div>
         <div class="">
-            <button class="delete-btn p-2"> <img class="max-w-9 max-h-9 p-1  border rounded-full opacity-40" src="trash.png" alt=""> </button>
+           <button  onclick="calculateCount()"  class="delete-btn p-1 px-2 bg-gray-200 rounded mr-3 mt-2">delete</button>
         </div>
         `
 
@@ -215,7 +215,7 @@ function renderRejected(){
             </div>
         </div>
         <div class="">
-            <button class="delete-btn p-2"> <img class="max-w-9 max-h-9 p-1  border rounded-full opacity-40" src="trash.png" alt=""> </button>
+           <button  onclick="calculateCount()" class="delete-btn p-1 px-2 bg-gray-200 rounded mr-3 mt-2">delete</button>
         </div>
         `
 
